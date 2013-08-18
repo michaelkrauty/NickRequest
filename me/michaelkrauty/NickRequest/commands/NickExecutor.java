@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 
 import me.michaelkrauty.NickRequest.NickRequest;
 
-public class NickExecutor implements CommandExecutor {
+public class NickExecutor implements CommandExecutor{
 	
 	public NickRequest plugin;
 	
@@ -23,9 +23,8 @@ public class NickExecutor implements CommandExecutor {
 				
 		plugin.nickRequests.add(sender.getName() + ": " + args[0]);
 		plugin.nickRequests.save();
-		sender.sendMessage("You requested that your nickname be changed to " + args[0]);
+		sender.sendMessage(ChatColor.GOLD + "You requested that your nickname be changed to " + args[0]);
 				
 		return true;
 	}
-
 }
