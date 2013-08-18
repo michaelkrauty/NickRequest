@@ -1,0 +1,8 @@
+name: NickRequest
+main: me.michaelkrauty.NickRequest.NickRequest
+author: michaelkrauty
+version: 1.0
+commands:
+   nickrequest:
+     description: Request a nickname (/nickrequest <nickname>)
+     usage: /<command>
