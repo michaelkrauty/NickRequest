@@ -4,5 +4,8 @@ author: michaelkrauty
 version: 1.0
 commands:
    nickrequest:
-     description: Request a nickname (/nickrequest <nickname>)
-     usage: /<command>
+     description: Request a nickname
+     usage: /NickRequest <nickname>
+   nickcheck:
+     description: Check nickname requests
+     usage: /NickCheck

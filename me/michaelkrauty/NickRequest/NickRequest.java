@@ -1,20 +1,32 @@
 package me.michaelkrauty.NickRequest;
 
+import java.io.File;
 import java.util.logging.Logger;
 
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
+import me.michaelkrauty.NickRequest.commands.NickExecutor;
+import me.michaelkrauty.NickRequest.util.ListStore;
+
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class NickRequest extends JavaPlugin {
 	
 	public static final Logger log = Logger.getLogger("Minecraft");
+	public ListStore nickRequests;
 	
 	public void onEnable(){
 		PluginDescriptionFile pdfFile = this.getDescription();
 		log.info("[NickRequest] NickRequest version " + pdfFile.getVersion() + " enabled");
+		
+		String pluginFolder = this.getDataFolder().getAbsolutePath();
+		
+		(new File(pluginFolder)).mkdirs();
+		
+		this.nickRequests = new ListStore(new File(pluginFolder + File.separator + "NickRequests.txt"));
+		
+		this.nickRequests.load();
+		
+		this.getCommand("nickrequest").setExecutor(new NickExecutor(this));
 	}
 	
 	@Override
@@ -23,17 +35,5 @@ public class NickRequest extends JavaPlugin {
 		log.info("[NickRequest] NickRequest version " + pdfFile.getVersion() + " disabled");
 	}
 	
-	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-		
-		if(args.length !=1){
-			sender.sendMessage(ChatColor.RED + "Usage: /nickrequest <nickname>");
-			return true;
-		}
-		
-		if(commandLabel.equalsIgnoreCase("nickrequest")){
-			sender.sendMessage(ChatColor.GOLD + "You requested that your nickname be changed to " + args[0]);
-			return true;
-		}
-		return true;
-	}
+
 }

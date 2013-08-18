@@ -7,9 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader;
 
 public class ListStore {
 	
@@ -37,7 +36,7 @@ public class ListStore {
 			String line;
 			
 			while ((line = reader.readLine()) != null){
-				if (this.values.contains(line) == false){
+				if (this.contains(line) == false){
 					this.values.add(line);
 				}
 			}
@@ -64,6 +63,24 @@ public class ListStore {
 		}catch (IOException e){
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean contains(String value){
+		return this.values.contains(value);
+	}
+	
+	public void add(String value){
+		if (this.contains(value) == false){
+			this.values.add(value);
+		}
+	}
+	
+	public void remove(String value){
+		this.values.remove(value);
+	}
+	
+	public ArrayList<String> getValues(){
+		return this.values;
 	}
 	
 }
