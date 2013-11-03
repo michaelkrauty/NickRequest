@@ -5,4 +5,17 @@ version: 1.0
 commands:
    nickrequest:
      description: Request a nickname
-     usage: /NickRequest <nickname>
+     usage: /nickrequest <nickname>
+   nicklist:
+     description: Read requested nicknames
+     usage: /nicklist
+   nickdone:
+     description: Mark a requested username as done
+     usage: /nickdone <player>
+permissions:
+   nickrequest.nickrequest:
+     description: gives access to /nickrequest
+   nickrequest.nicklist:
+     description: gives access to /nicklist
+   nickrequest.nickdone:
+     description: gives access to /nickdone
